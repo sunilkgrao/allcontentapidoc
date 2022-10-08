@@ -1,0 +1,49 @@
+openapi: 3.0.3
+info:
+  title: AllContent.ai API
+  description: AllContent API to interacti with core AllContent platform
+  version: '1.0'
+externalDocs:
+  description: "AllContent's guide"
+  url: https://jsonplaceholder.typicode.com/guide
+servers:
+- url: https://allcontent.ai
+  description: AllContent
+paths:
+  "/api/v1/Task/createpredictions":
+    post:
+      tags: ["createpredictions"]
+      summary: Create predictions from input parameters 
+      responses:
+        "200": # 200 Status Code
+          description: All went well
+          content:
+            application/json: # Reponse is returned in JSON
+              schema:
+               $ref: "#/components/schemas/createpredictions"
+components:
+  schemas:
+    createpredictions:
+      type: object
+      properties:
+        url:
+          type: string
+          description: url of source content
+        text:
+          type: string
+          description: content to include in the prediction
+        project_id:
+          type: number
+          description: id of project where these predicitons will be stored (default = API)
+        type:
+          type: string
+          description: type of prediction requested
+        num_predictions:
+          type: string
+          description: number of predictions to return
+        search_terms:
+          type: string
+          description: search terms to use to filter provided URL content or text content
+        task_title:
+          type: string
+          description: title of these set of predictions
